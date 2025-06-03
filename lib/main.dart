@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onno/core/routers/app_router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +15,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return MaterialApp.router(
+      title: "O N N O",
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.light,
+      routerConfig: AppRouter.router,
+    );
   }
 }
