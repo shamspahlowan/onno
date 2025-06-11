@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -15,15 +14,31 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late final SplashAnimator animator;
+  final Duration animationDuration = const Duration(seconds: 3);
+  final Duration animationDelayDuration = const Duration(seconds: 2);
+
+  final double widgetGapWG1 = 30;
+  final double widgetGapWG2 = 50;
+
+  final Map<String, String> assetsPath = {
+    "backgroundImage": "assets/svgs/screenBG.png",
+    "logoIcon": "assets/svgs/onno_logo.svg",
+    "logoText": "assets/svgs/onno_text.svg",
+  };
+
+  final String subtitle = "A Curated Grocery Subscription Platform";
+
+  List<Colors> gradientG1 = [];
+  List<Colors> gradientG2 = [];
+  List<Colors> gradientG3 = [];
 
   @override
   void initState() {
     super.initState();
-    animator = SplashAnimator(
-      vsync: this,
-      duration: const Duration(seconds: 4),
-    );
-    animator.animate();
+    animator = SplashAnimator(vsync: this, duration: animationDuration);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(animationDelayDuration, () => animator.animate());
+    });
   }
 
   @override
@@ -42,37 +57,51 @@ class _SplashScreenState extends State<SplashScreen>
             child: Stack(
               fit: StackFit.expand,
               children: [
-                Image.asset(
-                  "assets/jpgs/ecommerceBackgroundImage.jpg",
-                  fit: BoxFit.cover,
-                ),
-                BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
-                  child: Container(color: Colors.black12.withAlpha(80)),
-                ),
+                ...splashScreenBackground(),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 200),
+                    Spacer(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         animatedLogoIcon(context, animator),
-                        SizedBox(width: 10),
+                        SizedBox(width: 20),
                         animatedLogoText(context, animator),
                       ],
                     ),
-                    SizedBox(height: 280),
+                    SizedBox(height: widgetGapWG1),
+                    animator.getStatus()
+                        ? subtitleWithShader()
+                        : SizedBox(height: 30),
+                    Spacer(),
                     animator.getStatus()
                         ? continueButton(context)
                         : SizedBox(height: 50, width: 250),
+                    SizedBox(height: widgetGapWG2),
                   ],
                 ),
               ],
             ),
           );
         },
+      ),
+    );
+  }
+
+  ShaderMask subtitleWithShader() {
+    return ShaderMask(
+      shaderCallback: (bounds) {
+        return LinearGradient(
+          colors: [Colors.blueAccent, Colors.green],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height));
+      },
+      child: SizedBox(
+        height: 30,
+        child: Text(subtitle, style: TextStyle(fontSize: 18)),
       ),
     );
   }
@@ -86,7 +115,7 @@ class _SplashScreenState extends State<SplashScreen>
           context.go("/login");
         },
         child: const Text(
-          "Continue -->",
+          "Continue",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
         ),
       ),
@@ -94,11 +123,8 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Widget animatedLogoIcon(BuildContext context, SplashAnimator animator) {
-    // final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    // final leftShiftOffset = animator.logoIconShift.value * screenWidth;
     final slideupOffset = animator.logoIconSlide.value * screenHeight;
-    // final totalOffset = leftShiftOffset + slideupOffset;
 
     return Transform.rotate(
       angle: animator.logoIconRotation.value,
@@ -109,7 +135,7 @@ class _SplashScreenState extends State<SplashScreen>
           child: SizedBox(
             height: 120,
             width: 120,
-            child: SvgPicture.asset("assets/svgs/onno_logo.svg"),
+            child: SvgPicture.asset(assetsPath["logoIcon"]!),
           ),
         ),
       ),
@@ -117,8 +143,6 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Widget animatedLogoText(BuildContext context, SplashAnimator animator) {
-    // final screenWidth = MediaQuery.of(context).size.width;
-    // final screenHeight = MediaQuery.of(context).size.height;
     final widthFactor = animator.logoTextReveal.value;
 
     return ClipRect(
@@ -135,7 +159,7 @@ class _SplashScreenState extends State<SplashScreen>
           },
           blendMode: BlendMode.srcIn,
           child: SvgPicture.asset(
-            'assets/svgs/onno_text.svg',
+            assetsPath["logoText"]!,
             width: 180,
             height: 60,
             colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
@@ -143,5 +167,17 @@ class _SplashScreenState extends State<SplashScreen>
         ),
       ),
     );
+  }
+
+  List<Widget> splashScreenBackground() {
+    return [
+      Image.asset(assetsPath["backgroundImage"]!, fit: BoxFit.cover),
+      BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 40.0, sigmaY: 60.0),
+        child: Container(
+          color: const Color.fromARGB(255, 211, 255, 250).withAlpha(100),
+        ),
+      ),
+    ];
   }
 }

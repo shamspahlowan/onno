@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:onno/features/auth/presentation/screens/loading_screen.dart';
 import 'package:onno/features/auth/presentation/screens/login_screen.dart';
 import 'package:onno/features/auth/presentation/screens/splash_screen.dart';
 
@@ -19,6 +20,24 @@ class AppRouter {
           return CustomTransitionPage(
             key: state.pageKey,
             child: const LoginScreen(),
+            transitionsBuilder: (
+              context,
+              animation,
+              secondaryAnimation,
+              child,
+            ) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+          );
+        },
+      ),
+      GoRoute(
+        path: '/loadingScreen',
+        name: 'loading',
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: const LoadingScreen(),
             transitionsBuilder: (
               context,
               animation,
