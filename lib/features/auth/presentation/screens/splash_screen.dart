@@ -20,8 +20,11 @@ class _SplashScreenState extends State<SplashScreen>
   final double widgetGapWG1 = 30;
   final double widgetGapWG2 = 50;
 
+  late int screenWidth;
+  late int screenHeight;
+
   final Map<String, String> assetsPath = {
-    "backgroundImage": "assets/svgs/screenBG.png",
+    "backgroundImage": "assets/svgs/screenBG.webp",
     "logoIcon": "assets/svgs/onno_logo.svg",
     "logoText": "assets/svgs/onno_text.svg",
   };
@@ -39,6 +42,13 @@ class _SplashScreenState extends State<SplashScreen>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Future.delayed(animationDelayDuration, () => animator.animate());
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    screenHeight = MediaQuery.of(context).size.height.toInt();
+    screenWidth = MediaQuery.of(context).size.width.toInt();
+    super.didChangeDependencies();
   }
 
   @override
@@ -171,11 +181,16 @@ class _SplashScreenState extends State<SplashScreen>
 
   List<Widget> splashScreenBackground() {
     return [
-      Image.asset(assetsPath["backgroundImage"]!, fit: BoxFit.cover),
+      Image.asset(
+        assetsPath["backgroundImage"]!,
+        fit: BoxFit.cover,
+        cacheWidth: screenWidth,
+        cacheHeight: screenHeight,
+      ),
       BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 40.0, sigmaY: 60.0),
+        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
         child: Container(
-          color: const Color.fromARGB(255, 211, 255, 250).withAlpha(100),
+          color: const Color.fromARGB(255, 255, 255, 255).withAlpha(140),
         ),
       ),
     ];
