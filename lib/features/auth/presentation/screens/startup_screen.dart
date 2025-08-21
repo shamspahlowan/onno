@@ -87,7 +87,7 @@ class _SplashScreenState extends State<SplashScreen>
                         : SizedBox(height: 30),
                     Spacer(),
                     animator.getStatus()
-                        ? continueButton(context)
+                        ? loginRegisterButtton(context)
                         : SizedBox(height: 50, width: 250),
                     SizedBox(height: widgetGapWG2),
                   ],
@@ -116,19 +116,39 @@ class _SplashScreenState extends State<SplashScreen>
     );
   }
 
-  Widget continueButton(BuildContext context) {
-    return SizedBox(
-      height: 50,
-      width: 250,
-      child: ElevatedButton(
-        onPressed: () {
-          context.go("/login");
-        },
-        child: const Text(
-          "Continue",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+  Widget loginRegisterButtton(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: 50,
+          // width: 150,
+          child: ElevatedButton(
+            onPressed: () {
+              context.go("/login");
+            },
+            child: const Text(
+              "Login",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+          ),
         ),
-      ),
+        SizedBox(width: 30),
+        SizedBox(
+          height: 50,
+          // width: 150,
+          child: ElevatedButton(
+            onPressed: () {
+              context.goNamed("registration");
+            },
+            child: const Text(
+              "Register",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
