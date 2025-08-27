@@ -126,7 +126,7 @@ class _SplashScreenState extends State<SplashScreen>
           // width: 150,
           child: ElevatedButton(
             onPressed: () {
-              context.go("/login");
+              context.goNamed("login");
             },
             child: const Text(
               "Login",
