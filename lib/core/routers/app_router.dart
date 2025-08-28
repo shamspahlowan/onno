@@ -24,7 +24,7 @@ class AppRouter {
               child,
             ) {
               return ScaleTransition(
-                scale: Tween(begin: 0.98, end: 1.0).animate(
+                scale: Tween(begin: 0.9, end: 1.0).animate(
                   CurvedAnimation(parent: animation, curve: Curves.easeInOut),
                 ),
                 child: child,
@@ -47,7 +47,7 @@ class AppRouter {
               child,
             ) {
               return ScaleTransition(
-                scale: Tween(begin: 0.98, end: 1.0).animate(
+                scale: Tween(begin: 0.9, end: 1.0).animate(
                   CurvedAnimation(parent: animation, curve: Curves.easeInOut),
                 ),
                 child: child,
@@ -70,7 +70,7 @@ class AppRouter {
               child,
             ) {
               return ScaleTransition(
-                scale: Tween(begin: 0.98, end: 1.0).animate(
+                scale: Tween(begin: 0.9, end: 1.0).animate(
                   CurvedAnimation(parent: animation, curve: Curves.easeInOut),
                 ),
                 child: child,
@@ -93,7 +93,7 @@ class AppRouter {
               child,
             ) {
               return ScaleTransition(
-                scale: Tween(begin: 0.98, end: 1.0).animate(
+                scale: Tween(begin: 0.9, end: 1.0).animate(
                   CurvedAnimation(parent: animation, curve: Curves.easeInOut),
                 ),
                 child: child,
@@ -116,7 +116,7 @@ class AppRouter {
               child,
             ) {
               return ScaleTransition(
-                scale: Tween(begin: 0.98, end: 1.0).animate(
+                scale: Tween(begin: 0.9, end: 1.0).animate(
                   CurvedAnimation(parent: animation, curve: Curves.easeInOut),
                 ),
                 child: child,
