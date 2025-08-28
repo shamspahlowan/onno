@@ -13,7 +13,25 @@ class AppRouter {
       GoRoute(
         path: '/',
         name: 'splash',
-        builder: (context, state) => const SplashScreen(),
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: const SplashScreen(),
+            transitionsBuilder: (
+              context,
+              animation,
+              secondaryAnimation,
+              child,
+            ) {
+              return ScaleTransition(
+                scale: Tween(begin: 0.98, end: 1.0).animate(
+                  CurvedAnimation(parent: animation, curve: Curves.easeInOut),
+                ),
+                child: child,
+              );
+            },
+          );
+        },
       ),
       GoRoute(
         path: '/login',
@@ -28,7 +46,12 @@ class AppRouter {
               secondaryAnimation,
               child,
             ) {
-              return FadeTransition(opacity: animation, child: child);
+              return ScaleTransition(
+                scale: Tween(begin: 0.98, end: 1.0).animate(
+                  CurvedAnimation(parent: animation, curve: Curves.easeInOut),
+                ),
+                child: child,
+              );
             },
           );
         },
@@ -46,7 +69,12 @@ class AppRouter {
               secondaryAnimation,
               child,
             ) {
-              return FadeTransition(opacity: animation, child: child);
+              return ScaleTransition(
+                scale: Tween(begin: 0.98, end: 1.0).animate(
+                  CurvedAnimation(parent: animation, curve: Curves.easeInOut),
+                ),
+                child: child,
+              );
             },
           );
         },
@@ -64,8 +92,10 @@ class AppRouter {
               secondaryAnimation,
               child,
             ) {
-              return FadeTransition(
-                opacity: animation.drive(CurveTween(curve: Curves.easeIn)),
+              return ScaleTransition(
+                scale: Tween(begin: 0.98, end: 1.0).animate(
+                  CurvedAnimation(parent: animation, curve: Curves.easeInOut),
+                ),
                 child: child,
               );
             },
@@ -85,8 +115,10 @@ class AppRouter {
               secondaryAnimation,
               child,
             ) {
-              return FadeTransition(
-                opacity: animation.drive(CurveTween(curve: Curves.easeIn)),
+              return ScaleTransition(
+                scale: Tween(begin: 0.98, end: 1.0).animate(
+                  CurvedAnimation(parent: animation, curve: Curves.easeInOut),
+                ),
                 child: child,
               );
             },

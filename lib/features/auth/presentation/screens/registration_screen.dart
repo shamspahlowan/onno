@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class RegistrationScreen extends StatelessWidget {
@@ -8,78 +7,125 @@ class RegistrationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[50],
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.all(28.0),
             child: Column(
               children: [
                 //logo and icon will be placed here
-                SizedBox(height: 30),
+                SizedBox(height: 60),
                 SizedBox(
                   width: 120,
                   height: 100,
-                  child: SvgPicture.asset("assets/svgs/logoDark.svg"),
+                  child: Image.asset("assets/onno_logo.png"),
                 ),
                 SizedBox(
                   width: 120,
                   height: 50,
-                  child: SvgPicture.asset(
-                    "assets/svgs/onno_text.svg",
-                    colorFilter: ColorFilter.mode(
-                      Colors.black,
-                      BlendMode.srcIn,
-                    ),
-                  ),
+                  child: Image.asset("assets/onno_text_solid_color.png"),
                 ),
-                // SizedBox(height: 150),
+                SizedBox(height: 80),
                 Text(
                   "Create an account",
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
                 ),
-                SizedBox(height: 40),
+                SizedBox(height: 30),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "A quick setup to get started",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                   ),
                 ),
-                SizedBox(height: 5),
+                SizedBox(height: 10),
                 TextField(
                   decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color(0xFFF2F2F2),
                     hintText: "Enter your username",
-                    border: OutlineInputBorder(
+                    enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: Colors.grey.shade400,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: const Color.fromARGB(255, 35, 173, 139),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(height: 20),
                 TextField(
                   decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color(0xFFF2F2F2),
                     hintText: "Enter your Email",
-                    border: OutlineInputBorder(
+                    enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: Colors.grey.shade400,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: const Color.fromARGB(255, 35, 173, 139),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(height: 5),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Expanded(child: Divider(color: Colors.black, thickness: 1)),
+                    SizedBox(
+                      width: 100,
+                      child: Divider(color: Colors.black, thickness: 2),
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: const Text("or"),
+                      child: const Text(
+                        "or",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                        ),
+                      ),
                     ),
-                    Expanded(child: Divider(color: Colors.black, thickness: 1)),
+                    SizedBox(
+                      width: 100,
+                      child: Divider(color: Colors.black, thickness: 2),
+                    ),
                   ],
                 ),
                 SizedBox(height: 5),
                 TextField(
                   decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color(0xFFF2F2F2),
                     hintText: "Enter your Phone Number",
-                    border: OutlineInputBorder(
+                    enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: Colors.grey.shade400,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: const Color.fromARGB(255, 35, 173, 139),
+                      ),
                     ),
                   ),
                 ),
