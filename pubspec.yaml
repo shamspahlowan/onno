@@ -39,6 +39,7 @@ dependencies:
   flutter_svg: ^2.1.0
   get_it: ^8.0.3
   equatable: ^2.0.7
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +55,14 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/Onno_logo_android.png"
+  adaptive_icon_background: "assets/onno_logo_bg_android.png"
+  adaptive_icon_foreground: "assets/onno_core_logo.png"
+
+
 # The following section is specific to Flutter packages.
 flutter:
 
@@ -64,6 +73,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/
     - assets/svgs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
