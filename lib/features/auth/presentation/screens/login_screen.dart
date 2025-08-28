@@ -119,7 +119,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Text("Don't have any account with us?"),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.goNamed("registration");
+                      },
                       child: Text("Register", textAlign: TextAlign.start),
                     ),
                   ],
