@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onno/core/animations/splash_animator.dart';
+import 'package:onno/core/utils/assets_path.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -24,9 +25,9 @@ class _SplashScreenState extends State<SplashScreen>
   late int screenHeight;
 
   final Map<String, String> assetsPath = {
-    "backgroundImage": "assets/svgs/screenBG.webp",
-    "logoIcon": "assets/svgs/onno_logo.svg",
-    "logoText": "assets/svgs/onno_text.svg",
+    "backgroundImage": AssetsPath.screenBgWebp,
+    "logoIcon": AssetsPath.onnoLogoSvg,
+    "logoText": AssetsPath.onnoTextSvg,
   };
 
   final String subtitle = "A Curated Grocery Subscription Platform";
