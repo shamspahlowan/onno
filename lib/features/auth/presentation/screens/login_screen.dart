@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:onno/core/utils/assets_path.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -24,12 +25,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   width: 120,
                   height: 100,
-                  child: Image.asset("assets/onno_logo.png"),
+                  child: Image.asset(AssetsPath.onnoLogoPng),
                 ),
                 SizedBox(
                   width: 120,
                   height: 50,
-                  child: Image.asset("assets/onno_text_solid_color.png"),
+                  child: Image.asset(AssetsPath.onnoTextSolidColorPng),
                 ),
                 SizedBox(height: 80),
                 Text(
@@ -53,14 +54,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        width: 2,
+                        width: 1,
                         color: Colors.grey.shade400,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        width: 2,
+                        width: 1,
                         color: const Color.fromARGB(255, 35, 173, 139),
                       ),
                     ),
@@ -75,14 +76,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        width: 2,
+                        width: 1,
                         color: Colors.grey.shade400,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        width: 2,
+                        width: 1,
                         color: const Color.fromARGB(255, 35, 173, 139),
                       ),
                     ),
@@ -142,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       context.goNamed("homeScreen");
                     },
                     style: ElevatedButton.styleFrom(
-                      elevation: 0,
+                      elevation: 1,
                       foregroundColor: Colors.black,
                       backgroundColor: const Color(0xFF20CFA3),
                       padding: EdgeInsets.all(8),

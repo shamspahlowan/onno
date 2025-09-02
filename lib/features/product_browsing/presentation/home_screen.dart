@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_launcher_icons/xml_templates.dart';
+import 'package:onno/core/utils/assets_path.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,23 +15,32 @@ class _HomeScreenState extends State<HomeScreen> {
     final double expandedHeight = MediaQuery.of(context).size.height * 0.2;
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        selectedItemColor: Color(0xFF37917A),
-        unselectedItemColor: Colors.grey,
-        type: BottomNavigationBarType.shifting,
+        currentIndex: 0,
+        backgroundColor: Colors.grey.shade50,
+        selectedItemColor: Color.fromARGB(255, 52, 179, 147),
+        unselectedItemColor: const Color(0xFF000000),
+        type: BottomNavigationBarType.fixed,
+        elevation: 2,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home_rounded),
+            label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.history_outlined),
-            label: "History",
+            icon: Icon(Icons.space_dashboard_outlined),
+            activeIcon: Icon(Icons.space_dashboard_rounded),
+            label: "Explore",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.shopping_cart_outlined),
+            activeIcon: Icon(Icons.shopping_cart_rounded),
             label: "Cart",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.inventory_2_outlined),
+            activeIcon: Icon(Icons.inventory_2_rounded),
+            label: "Orders",
           ),
         ],
         onTap: (value) {
@@ -64,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(50),
                     ),
                   ),
                 ),
@@ -111,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(0),
               child: Container(
                 padding: EdgeInsets.all(12),
-                height: 180,
+                height: 140,
                 child: PageView.builder(
                   controller: PageController(viewportFraction: 0.9),
                   itemCount: 10,
@@ -122,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.blueAccent,
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      child: Center(child: Text("vegetable")),
+                      child: Center(child: Text("Promotional Banner Widget")),
                     );
                   },
                 ),
@@ -136,13 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: Align(
                     alignment: Alignment.topLeft,
-                    child: Text(
-                      "Catagories",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22,
-                      ),
-                    ),
+                    child: Text("Catagories", style: TextStyle(fontSize: 18)),
                   ),
                 ),
                 Container(
@@ -153,13 +158,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: 10,
                     itemBuilder: (context, index) {
                       return Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 8),
-                        padding: EdgeInsets.all(12),
+                        padding: EdgeInsets.all(4),
+                        margin: EdgeInsets.all(6),
+                        height: 90,
+                        width: 100,
                         decoration: BoxDecoration(
                           color: Colors.blueAccent,
-                          shape: BoxShape.circle,
+                          shape: BoxShape.rectangle,
+                          border: Border.all(
+                            width: 1,
+                            color: const Color.fromARGB(157, 197, 197, 197),
+                          ),
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Center(child: Text("groceries")),
+                        child: Center(
+                          child: Center(child: Text("Grocery Catagory")),
+                        ),
                       );
                     },
                   ),
@@ -176,31 +190,33 @@ class _HomeScreenState extends State<HomeScreen> {
                     alignment: Alignment.topLeft,
                     child: Text(
                       "Popular Products",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22,
-                      ),
+                      style: TextStyle(fontSize: 18),
                     ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(12),
-                  height: 300,
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: 10,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 3 / 2,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 20,
+                    ),
+                    shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 8),
-                        padding: EdgeInsets.all(12),
-
-                        // height: 120,
                         decoration: BoxDecoration(
-                          color: Colors.blueAccent,
-                          shape: BoxShape.rectangle,
+                          color: Colors.blue,
+                          border: Border.all(
+                            color: Colors.grey.shade200,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Center(child: Text("products")),
+                        child: Center(child: Text("Product Items $index")),
                       );
                     },
                   ),
@@ -215,32 +231,32 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget expandedLeading() {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CircleAvatar(
-          radius: 24,
-          backgroundColor: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(6),
-            child: ClipOval(child: Image.asset("assets/user.png")),
+        InkWell(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              Text(
+                "Shams Pahlowan",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              Text("useful information", style: TextStyle(fontSize: 14)),
+            ],
           ),
         ),
-        const SizedBox(width: 5),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
-              "Shams Pahlowan",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        Container(
+          decoration: BoxDecoration(shape: BoxShape.circle),
+          child: IconButton(
+            iconSize: 28,
+            onPressed: () {},
+            icon: const Icon(
+              Icons.settings_outlined,
+              color: Color.fromARGB(188, 0, 0, 0),
             ),
-            Text("useful information", style: TextStyle(fontSize: 12)),
-          ],
-        ),
-        const Expanded(child: SizedBox()),
-        IconButton(
-          iconSize: 32,
-          onPressed: () {},
-          icon: const Icon(Icons.settings, color: Colors.black),
+          ),
         ),
       ],
     );
