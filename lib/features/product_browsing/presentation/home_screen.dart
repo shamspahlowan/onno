@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_launcher_icons/xml_templates.dart';
-import 'package:onno/core/utils/assets_path.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,39 +12,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final double expandedHeight = MediaQuery.of(context).size.height * 0.2;
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        backgroundColor: Colors.grey.shade50,
-        selectedItemColor: Color.fromARGB(255, 52, 179, 147),
-        unselectedItemColor: const Color(0xFF000000),
-        type: BottomNavigationBarType.fixed,
-        elevation: 2,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home_rounded),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.space_dashboard_outlined),
-            activeIcon: Icon(Icons.space_dashboard_rounded),
-            label: "Explore",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
-            activeIcon: Icon(Icons.shopping_cart_rounded),
-            label: "Cart",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.inventory_2_outlined),
-            activeIcon: Icon(Icons.inventory_2_rounded),
-            label: "Orders",
-          ),
-        ],
-        onTap: (value) {
-          setState(() {});
-        },
-      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
