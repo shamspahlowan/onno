@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:onno/app.dart';
 import 'package:onno/features/auth/presentation/screens/loading_screen.dart';
 import 'package:onno/features/auth/presentation/screens/login_screen.dart';
 import 'package:onno/features/auth/presentation/screens/registration_screen.dart';
-import 'package:onno/features/auth/presentation/screens/startup_screen.dart';
+import 'package:onno/features/auth/presentation/screens/splash_screen.dart';
 import 'package:onno/features/product_browsing/presentation/home_screen.dart';
 
 class AppRouter {
@@ -17,6 +18,29 @@ class AppRouter {
           return CustomTransitionPage(
             key: state.pageKey,
             child: const SplashScreen(),
+            transitionsBuilder: (
+              context,
+              animation,
+              secondaryAnimation,
+              child,
+            ) {
+              return ScaleTransition(
+                scale: Tween(begin: 0.9, end: 1.0).animate(
+                  CurvedAnimation(parent: animation, curve: Curves.easeInOut),
+                ),
+                child: child,
+              );
+            },
+          );
+        },
+      ),
+      GoRoute(
+        path: '/app',
+        name: 'app',
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: const App(),
             transitionsBuilder: (
               context,
               animation,

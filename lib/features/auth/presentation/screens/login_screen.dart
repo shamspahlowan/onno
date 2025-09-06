@@ -89,58 +89,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 5),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     SizedBox(
-                //       width: 100,
-                //       child: Divider(color: Colors.black, thickness: 2),
-                //     ),
-                //     Padding(
-                //       padding: const EdgeInsets.symmetric(horizontal: 12),
-                //       child: const Text(
-                //         "or",
-                //         style: TextStyle(
-                //           fontWeight: FontWeight.w500,
-                //           fontSize: 18,
-                //         ),
-                //       ),
-                //     ),
-                //     SizedBox(
-                //       width: 100,
-                //       child: Divider(color: Colors.black, thickness: 2),
-                //     ),
-                //   ],
-                // ),
-                // SizedBox(height: 5),
-                // TextField(
-                //   decoration: InputDecoration(
-                //     filled: true,
-                //     fillColor: const Color(0xFFF2F2F2),
-                //     hintText: "Enter your Phone Number",
-                //     enabledBorder: OutlineInputBorder(
-                //       borderRadius: BorderRadius.circular(12),
-                //       borderSide: BorderSide(
-                //         width: 2,
-                //         color: Colors.grey.shade400,
-                //       ),
-                //     ),
-                //     focusedBorder: OutlineInputBorder(
-                //       borderRadius: BorderRadius.circular(12),
-                //       borderSide: BorderSide(
-                //         width: 2,
-                //         color: const Color.fromARGB(255, 35, 173, 139),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                SizedBox(height: 15),
+                SizedBox(height: 20),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      context.goNamed("homeScreen");
+                      context.goNamed("app");
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 1,

@@ -209,9 +209,9 @@ class _SplashScreenState extends State<SplashScreen>
         cacheHeight: screenHeight,
       ),
       BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+        filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
         child: Container(
-          color: const Color.fromARGB(255, 255, 255, 255).withAlpha(140),
+          color: const Color.fromARGB(209, 255, 255, 255).withAlpha(140),
         ),
       ),
     ];
