@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -16,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late final SplashAnimator animator;
   final Duration animationDuration = const Duration(seconds: 3);
-  final Duration animationDelayDuration = const Duration(seconds: 2);
+  final Duration animationDelayDuration = const Duration(seconds: 3);
 
   final double widgetGapWG1 = 30;
   final double widgetGapWG2 = 50;
@@ -25,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen>
   late int screenHeight;
 
   final Map<String, String> assetsPath = {
-    "backgroundImage": AssetsPath.screenBgWebp,
+    "backgroundImage": AssetsPath.appBG03,
     "logoIcon": AssetsPath.onnoLogoSvg,
     "logoText": AssetsPath.onnoTextSvg,
   };
@@ -78,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen>
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         animatedLogoIcon(context, animator),
-                        SizedBox(width: 20),
+                        SizedBox(width: 10),
                         animatedLogoText(context, animator),
                       ],
                     ),
@@ -105,14 +104,20 @@ class _SplashScreenState extends State<SplashScreen>
     return ShaderMask(
       shaderCallback: (bounds) {
         return LinearGradient(
-          colors: [Colors.blueAccent, Colors.green],
+          colors: [const Color(0xFFFFE6C1), const Color(0xFFFFE6C1)],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height));
       },
       child: SizedBox(
         height: 30,
-        child: Text(subtitle, style: TextStyle(fontSize: 18)),
+        child: Text(
+          subtitle,
+          style: TextStyle(
+            fontSize: 18,
+            color: const Color.fromARGB(255, 255, 255, 255),
+          ),
+        ),
       ),
     );
   }
@@ -122,32 +127,36 @@ class _SplashScreenState extends State<SplashScreen>
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          height: 50,
-          // width: 150,
-          child: ElevatedButton(
-            onPressed: () {
-              context.goNamed("login");
-            },
-            child: const Text(
-              "Login",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+        ElevatedButton(
+          onPressed: () {
+            context.goNamed("registration");
+          },
+          style: ElevatedButton.styleFrom(
+            elevation: 1,
+            backgroundColor: const Color.fromARGB(227, 240, 240, 240),
+            foregroundColor: const Color.fromARGB(255, 5, 119, 43),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadiusGeometry.all(Radius.circular(24)),
+              side: BorderSide(width: 1, color: Colors.grey),
             ),
           ),
+          child: const Text("Register"),
         ),
-        SizedBox(width: 30),
-        SizedBox(
-          height: 50,
-          // width: 150,
-          child: ElevatedButton(
-            onPressed: () {
-              context.goNamed("registration");
-            },
-            child: const Text(
-              "Register",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+        SizedBox(width: 50),
+        ElevatedButton(
+          onPressed: () {
+            context.goNamed("login");
+          },
+          style: ElevatedButton.styleFrom(
+            elevation: 1,
+            backgroundColor: const Color.fromARGB(227, 240, 240, 240),
+            foregroundColor: const Color.fromARGB(255, 5, 119, 43),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadiusGeometry.all(Radius.circular(24)),
+              side: BorderSide(width: 1, color: Colors.grey),
             ),
           ),
+          child: const Text("Login"),
         ),
       ],
     );
@@ -164,8 +173,8 @@ class _SplashScreenState extends State<SplashScreen>
         child: Transform.translate(
           offset: slideupOffset,
           child: SizedBox(
-            height: 120,
-            width: 120,
+            height: 70,
+            width: 70,
             child: SvgPicture.asset(assetsPath["logoIcon"]!),
           ),
         ),
@@ -183,7 +192,7 @@ class _SplashScreenState extends State<SplashScreen>
         child: ShaderMask(
           shaderCallback: (bounds) {
             return const LinearGradient(
-              colors: [Color(0xFF2A7B9B), Color(0xFF57C785)],
+              colors: [Color.fromARGB(255, 61, 176, 221), Color(0xFF57C785)],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
             ).createShader(bounds);
@@ -191,9 +200,12 @@ class _SplashScreenState extends State<SplashScreen>
           blendMode: BlendMode.srcIn,
           child: SvgPicture.asset(
             assetsPath["logoText"]!,
-            width: 180,
-            height: 60,
-            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+            width: 120,
+            height: 30,
+            colorFilter: const ColorFilter.mode(
+              Color.fromARGB(255, 255, 255, 255),
+              BlendMode.srcIn,
+            ),
           ),
         ),
       ),
@@ -204,15 +216,9 @@ class _SplashScreenState extends State<SplashScreen>
     return [
       Image.asset(
         assetsPath["backgroundImage"]!,
-        fit: BoxFit.cover,
+        fit: BoxFit.fill,
         cacheWidth: screenWidth,
         cacheHeight: screenHeight,
-      ),
-      BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
-        child: Container(
-          color: const Color.fromARGB(209, 255, 255, 255).withAlpha(140),
-        ),
       ),
     ];
   }

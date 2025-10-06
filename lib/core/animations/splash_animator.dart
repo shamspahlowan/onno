@@ -1,5 +1,4 @@
 import 'dart:math' show pi;
-
 import 'package:flutter/animation.dart';
 
 class SplashAnimator {
