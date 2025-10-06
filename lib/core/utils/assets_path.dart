@@ -16,6 +16,12 @@ class AssetsPath {
       "$_imagePath/onno_text_solid_color.png";
   static const String userPng = "$_imagePath/user.png";
 
+  //jpgs
+  static const String appBG01 = "$_imagePath/app_bg_01.jpg";
+  static const String appBG02 = "$_imagePath/app_bg_02.jpg";
+  static const String appBG03 = "$_imagePath/app_bg_03.jpg";
+  static const String appBG04 = "$_imagePath/app_bg_04.jpg";
+
   //svgs
   static const String onnoTextSvg = "$_imagePath/onno_text.svg";
   static const String onnoLogoSvg = "$_imagePath/onno_logo.svg";

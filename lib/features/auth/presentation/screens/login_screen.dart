@@ -96,22 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       context.goNamed("app");
                     },
-                    style: ElevatedButton.styleFrom(
-                      elevation: 1,
-                      foregroundColor: Colors.black,
-                      backgroundColor: const Color(0xFF20CFA3),
-                      padding: EdgeInsets.all(8),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadiusGeometry.circular(12),
-                      ),
-                    ),
-                    child: const Text(
-                      "Login",
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    child: const Text("Login"),
                   ),
                 ),
                 SizedBox(height: 5),
